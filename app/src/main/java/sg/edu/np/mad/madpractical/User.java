@@ -9,9 +9,30 @@ public class User {
     public User(){}
 
     public User(String Name, String Description, int Id, boolean Followed){
-        name = Name;
-        description = Description;
-        id = Id;
-        followed = Followed;
+        this.name = Name;
+        this.description = Description;
+        this.id = Id;
+        this.followed = Followed;
     }
+
+    public String getMyName() {
+        return name;
+    }
+
+    public void setMyName(String myName) {
+        this.name = myName;
+    }
+
+    public String getMyDesc() {
+        return description;
+    }
+
+    public void setMyDesc(String myDesc) {
+        this.description = myDesc;
+    }
+
+    public void setMyFollow(Boolean myFollow){
+        this.followed = myFollow;
+    }
+
 }

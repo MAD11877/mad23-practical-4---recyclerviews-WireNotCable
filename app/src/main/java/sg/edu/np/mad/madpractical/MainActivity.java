@@ -18,12 +18,13 @@ public class MainActivity extends AppCompatActivity {
         // get name
         TextView name = findViewById(R.id.textView2);
         Intent receivingEnd = getIntent();
-        int message = receivingEnd.getIntExtra("num", 0);
-        name.setText(user.name+message);
+        String name1 = receivingEnd.getStringExtra("name");
+        name.setText(name1);
 
         // get desc
         TextView desc = findViewById(R.id.textView);
-        desc.setText((user.description));
+        String desc1 = receivingEnd.getStringExtra("desc");
+        desc.setText(desc1);
 
         // toggle follow & unfollow button
         Button followBtn = findViewById(R.id.button);
