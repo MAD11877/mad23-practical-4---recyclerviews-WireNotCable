@@ -19,33 +19,14 @@ import java.util.Random;
 
 public class UserAdaptor extends RecyclerView.Adapter<UserViewHolder>{
     private ArrayList<User> list_objects;
-    public UserAdaptor(ArrayList<User> list_objects){
+    private ListActivity activity;
+    public UserAdaptor(ArrayList<User> list_objects, ListActivity activity){
         this.list_objects = list_objects;
+        this.activity = activity;
     }
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.customactivitylist, parent, false);
         UserViewHolder holder = new UserViewHolder(view);
-        Context context = view.getContext();
-        holder.image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Profile");
-                builder.setMessage(String.valueOf(holder.txt1.getText()));
-                builder.setPositiveButton("View", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-                        //send data to main activity
-                        Intent profile = new Intent(context, MainActivity.class);
-                        profile.putExtra("name", holder.txt1.getText());
-                        profile.putExtra("desc", holder.txt2.getText());
-                        context.startActivity(profile);
-                    }
-                });
-                builder.setNegativeButton("Close", null);
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });
         return holder;
     }
     public void onBindViewHolder(UserViewHolder holder, int position){
@@ -54,6 +35,32 @@ public class UserAdaptor extends RecyclerView.Adapter<UserViewHolder>{
         holder.txt2.setText(list_items.getMyDesc());
 
 
+        holder.bigimage.setVisibility(
+                list_items.name.endsWith("7")
+                        ? View.VISIBLE
+                        : View.GONE
+        );
+
+        holder.image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle("Profile");
+                builder.setMessage(String.valueOf(holder.txt1.getText()));
+                builder.setPositiveButton("View", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        //send data to main activity
+                        Intent profile = new Intent(activity, MainActivity.class);
+                        profile.putExtra("name", holder.txt1.getText());
+                        profile.putExtra("desc", holder.txt2.getText());
+                        activity.startActivity(profile);
+                    }
+                });
+                builder.setNegativeButton("Close", null);
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
     }
 
     public int getItemCount(){

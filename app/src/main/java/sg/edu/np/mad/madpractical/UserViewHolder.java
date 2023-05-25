@@ -11,11 +11,13 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
     TextView txt2;
 
     ImageView image;
+    ImageView bigimage;
 
     public UserViewHolder(View itemView){
         super(itemView);
         txt1 = itemView.findViewById(R.id.nameTextView);
         txt2 = itemView.findViewById(R.id.descTextView);
         image = itemView.findViewById(R.id.imageView2);
+        bigimage = itemView.findViewById(R.id.bigimage);
     }
 }

@@ -35,36 +35,10 @@ public class ListActivity extends AppCompatActivity {
             myObject_List.add(user);
         }
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        UserAdaptor userAdaptor = new UserAdaptor(myObject_List);
+        UserAdaptor userAdaptor = new UserAdaptor(myObject_List, this);
         LinearLayoutManager myLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(myLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(userAdaptor);
-
-
-
-        /*
-        ImageView clickImage = findViewById(R.id.imageView2);
-        clickImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
-                builder.setTitle("Profile");
-                builder.setMessage("MADness");
-                builder.setPositiveButton("View", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int id){
-                        //send data to main activity
-                        Intent sendNum = new Intent(ListActivity.this, MainActivity.class);
-                        int num = new Random().nextInt();
-                        sendNum.putExtra("num",num);
-                        startActivity(sendNum);
-                    }
-                });
-                builder.setNegativeButton("Close", null);
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });*/
     }
 }
